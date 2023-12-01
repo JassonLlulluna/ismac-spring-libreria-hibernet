@@ -4,22 +4,41 @@ import java.util.Date;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 import org.springframework.stereotype.Component;
 
 @Component
+@Entity
+@Table(name="cliente")
 public class Cliente {
 	
 	
 	//ATRIBUTOS
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="id_cliente")
 	private int id_cliente;
+	@Column(name="cedula")
 	private String cedula;
+	@Column(name="nombre")
 	private String nombre;
+	@Column(name="apellido")
 	private String apellido;
-	private int edad;
-	private Date fecha_nac; // date
+//	@Column(name="edad")
+//	private int edad;
+//	@Column(name="fecha_nac")
+//	private Date fecha_nac; // date
+	@Column(name="direccion")
 	private String direccion;
+	@Column(name="telefono")
 	private String telefono; // string
+	@Column(name="correo")
 	private String correo;
 	
 	
@@ -72,25 +91,25 @@ public class Cliente {
 	}
 
 
-	public int getEdad() {
-		return edad;
-	}
-
-
-	public void setEdad(int edad) {
-		this.edad = edad;
-	}
-
-
-	public Date getFecha_nac() {
-		return fecha_nac;
-	}
-
-
-	public void setFecha_nac(Date fecha_nac) {
-		this.fecha_nac = fecha_nac;
-	}
-
+//	public int getEdad() {
+//		return edad;
+//	}
+//
+//
+//	public void setEdad(int edad) {
+//		this.edad = edad;
+//	}
+//
+//
+//	public Date getFecha_nac() {
+//		return fecha_nac;
+//	}
+//
+//
+//	public void setFecha_nac(Date fecha_nac) {
+//		this.fecha_nac = fecha_nac;
+//	}
+//
 
 	public String getDireccion() {
 		return direccion;
@@ -134,12 +153,10 @@ public class Cliente {
 	}
 	
 	
-	//MOSTRAR LOS DATOS
 	@Override
 	public String toString() {
 		return "Cliente [id_cliente=" + id_cliente + ", cedula=" + cedula + ", nombre=" + nombre + ", apellido="
-				+ apellido + ", edad=" + edad + ", fecha_nac=" + fecha_nac + ", direccion=" + direccion + ", telefono="
-				+ telefono + ", correo=" + correo + "]";
+				+ apellido + ", direccion=" + direccion + ", telefono=" + telefono + ", correo=" + correo + "]";
 	}
 	
 
