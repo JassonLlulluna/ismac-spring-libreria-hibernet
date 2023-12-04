@@ -47,9 +47,29 @@ public class Cliente {
 	public Cliente() {
 	
 	}
+	
+	
 
 
 	
+	public Cliente(int id_cliente, String cedula, String nombre, String apellido, String direccion, String telefono,
+			String correo) {
+	
+		this.id_cliente = id_cliente;
+		this.cedula = cedula;
+		this.nombre = nombre;
+		this.apellido = apellido;
+		this.direccion = direccion;
+		this.telefono = telefono;
+		this.correo = correo;
+	}
+	
+	
+
+
+
+
+
 	//METODOS SET Y GET ESTABLECER Y MOSTRAR
 	public int getId_cliente() {
 		return id_cliente;
