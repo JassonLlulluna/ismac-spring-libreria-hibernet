@@ -2,10 +2,12 @@ package com.distribuida.dao;
 
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.transaction.Transactional;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -37,24 +39,58 @@ public class AutorDAOImpl implements AutorDAO {
 	
 
 	@Override
+	@Transactional
 	public Autor findOne(int id) {
 		// TODO Auto-generated method stub
-		return null;
+		Session session=sessionFactory.getCurrentSession();
+		
+		Query<Autor> query =session.createQuery("SELECT au FROM Autor au WHERE idAutor =: keyIdAutor",Autor.class);
+		query.setParameter("keyIdAutor", id);
+		
+		return query.getSingleResult();
 	}
 	
 	
 
 	@Override
+	@Transactional
 	public void add(Autor autor) {
 		// TODO Auto-generated method stub
+		
+		
+		Session session=sessionFactory.getCurrentSession();
+		
+		//HQL INSERT TO VALUES no admite
+		//INSERT INTO .... SELECT ... 
+		
+		session.saveOrUpdate(autor);
+
+		
+		
 		
 	}
 	
 	
 
 	@Override
+	@Transactional
 	public void up(Autor autor) {
 		// TODO Auto-generated method stub
+		
+		
+		Session session=sessionFactory.getCurrentSession();
+		Query<Autor> query =session.createQuery("UPDATE Autor SET nombre=:nombre, apellido=:apellido, pais=:pais, direccion=:direccion, telefono=:telefono, correo=:correo WHERE idAutor=:idAutor " ,Autor.class);
+
+		
+		query.setParameter("nombre", autor.getNombre());
+		query.setParameter("apellido", autor.getApellido());
+		query.setParameter("direccion", autor.getDireccion());
+		query.setParameter("telefono", autor.getTelefono());
+		query.setParameter("correo", autor.getCorreo());
+		query.setParameter("idAutor", autor.getIdAutor());
+		
+	
+		query.executeUpdate();
 		
 	}
 	

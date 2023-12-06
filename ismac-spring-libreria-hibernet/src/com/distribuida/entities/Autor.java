@@ -1,21 +1,57 @@
 package com.distribuida.entities;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
 import org.springframework.stereotype.Component;
 
 @Component
+@Entity
+@Table(name="autor")
 public class Autor {
 	
 	
 	//ATRIBUTOS
-	private int id_autor;
+	
+	
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="id_autor")
+	private int idAutor;
+	@Column(name="nombre")
 	private String nombre;
+	@Column(name="apellido")
 	private String apellido;
+	@Column(name="pais")
 	private String pais;
+	@Column(name="direccion")
 	private String direccion;
+	@Column(name="telefono")
 	private String telefono;
+	@Column(name="correo")
 	private String correo;
 	
 	
+
+	
+	public Autor(int idAutor, String nombre, String apellido, String pais, String direccion, String telefono,
+			String correo) {
+		
+		this.idAutor = idAutor;
+		this.nombre = nombre;
+		this.apellido = apellido;
+		this.pais = pais;
+		this.direccion = direccion;
+		this.telefono = telefono;
+		this.correo = correo;
+	}
+
+
+
 	//METODO CONSTRUCTOR VACIO
 	public Autor() {
 		
@@ -25,13 +61,13 @@ public class Autor {
 	
 	//METODOS SET Y GET
 
-	public int getId_autor() {
-		return id_autor;
+	public int getIdAutor() {
+		return idAutor;
 	}
 
 
-	public void setId_autor(int id_autor) {
-		this.id_autor = id_autor;
+	public void setIdAutor(int idAutor) {
+		this.idAutor = idAutor;
 	}
 
 
@@ -100,7 +136,7 @@ public class Autor {
 	
 	@Override
 	public String toString() {
-		return "Autor [id_autor=" + id_autor + ", nombre=" + nombre + ", apellido=" + apellido + ", pais=" + pais
+		return "Autor [idAutor=" + idAutor + ", nombre=" + nombre + ", apellido=" + apellido + ", pais=" + pais
 				+ ", direccion=" + direccion + ", telefono=" + telefono + ", correo=" + correo + "]";
 	}
 	
