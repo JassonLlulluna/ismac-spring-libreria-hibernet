@@ -23,11 +23,15 @@ public class PrincipalAutor {
 		//AD
 //		Autor autor1 = new Autor(0,"nombre","apellido","pais","direccion","telefono","correo");
 //		autorDAO.add(autor1);
-		
+//		
 		//UPDATE
 //		//UP
-		Autor autor2 = new Autor(54,"nombre1","apellido1","pais1","direccion1","telefono1","correo1");
+		Autor autor2 = new Autor(55,"nombre1","apellido1","pais1","direccion1","telefono1","correo1");
 		autorDAO.up(autor2);
+////		
+//		//DELETE
+//		autorDAO.del(54);
+		
 		
 		//FINDONE
 //		Autor autor =  autorDAO.findOne(1);

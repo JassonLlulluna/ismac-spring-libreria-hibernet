@@ -79,11 +79,12 @@ public class AutorDAOImpl implements AutorDAO {
 		
 		
 		Session session=sessionFactory.getCurrentSession();
-		Query<Autor> query =session.createQuery("UPDATE Autor SET nombre=:nombre, apellido=:apellido, pais=:pais, direccion=:direccion, telefono=:telefono, correo=:correo WHERE idAutor=:idAutor " ,Autor.class);
+		Query<Autor> query =session.createQuery("UPDATE Autor SET nombre=:nombre, apellido=:apellido, pais=:pais, direccion=:direccion, telefono=:telefono, correo=:correo WHERE idAutor=:idAutor ");
 
 		
 		query.setParameter("nombre", autor.getNombre());
 		query.setParameter("apellido", autor.getApellido());
+		query.setParameter("pais", autor.getPais());
 		query.setParameter("direccion", autor.getDireccion());
 		query.setParameter("telefono", autor.getTelefono());
 		query.setParameter("correo", autor.getCorreo());
@@ -97,9 +98,14 @@ public class AutorDAOImpl implements AutorDAO {
 	
 
 	@Override
+	@Transactional
 	public void del(int id) {
 		// TODO Auto-generated method stub
-		
+		Session session=sessionFactory.getCurrentSession();
+		Query query =session.createQuery("DELETE FROM Autor au WHERE au.idAutor=:idAutor ");
+
+		query.setParameter("idAutor", id);
+			query.executeUpdate();		
 	}
 	
 	
