@@ -2,38 +2,103 @@ package com.distribuida.entities;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 
 @Component
+@Entity
+@Table(name="libro")
 public class Libro {
 	
 	//ATRIBUTOS
+		@Id
+		@GeneratedValue(strategy=GenerationType.IDENTITY)
+		@Column(name="id_libro")
 		private int id_libro;
+		@Column(name="titulo")
 		private String titulo;
+		@Column(name="editorial")
 		private String editorial;
+		@Column(name="num_paginas")
 		private int num_paginas;
+		@Column(name="edicion")
 		private String edicion;
+		@Column(name="idioma")
 		private String idioma;
+		@Column(name="fecha_publicacion")
 		private Date fecha_publicacion;
+		@Column(name="descripcion")
 		private String descripcion;
+		@Column(name="tipo_pasta")
 		private String tipo_pasta;
-		private String isbn;
+		@Column(name="ISBN")
+		private String ISBN;
+		@Column(name="num_ejemplares")
 		private int num_ejemplares;
+		@Column(name="portada")
 		private String portada;
+		@Column(name="presentacion")
 		private String presentacion;
+		@Column(name="precio")
 		private float precio;
 		
 		
 		//CATEGORIA Y AUTOR
-		@Autowired
+		@ManyToOne(cascade= {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+		@JoinColumn(name="id_categoria")	
 		private Categoria categoria;  // CATEGORIA
-		@Autowired
+		@ManyToOne(cascade= {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+		@JoinColumn(name="id_autor")	
 		private Autor autor;// AUTOR	
 		
+		//METODO VACIO
+		public Libro() {
+			
+		}
 		
 		
+
+		
+
+
+	public Libro(int id_libro, String titulo, String editorial, int num_paginas, String edicion, String idioma,
+				Date fecha_publicacion, String descripcion, String tipo_pasta, String iSBN, int num_ejemplares,
+				String portada, String presentacion, float precio) {
+			
+			this.id_libro = id_libro;
+			this.titulo = titulo;
+			this.editorial = editorial;
+			this.num_paginas = num_paginas;
+			this.edicion = edicion;
+			this.idioma = idioma;
+			this.fecha_publicacion = fecha_publicacion;
+			this.descripcion = descripcion;
+			this.tipo_pasta = tipo_pasta;
+			ISBN = iSBN;
+			this.num_ejemplares = num_ejemplares;
+			this.portada = portada;
+			this.presentacion = presentacion;
+			this.precio = precio;
+			this.categoria = categoria;
+			this.autor = autor;
+		}
+
+
+
+
+
+
 	//METODOS SET Y GET
 		
 		public int getId_libro() {
@@ -90,11 +155,11 @@ public class Libro {
 		public void setTipo_pasta(String tipo_pasta) {   ///SET
 			this.tipo_pasta = tipo_pasta;
 		}
-		public String getIsbn() {
-			return isbn;
+		public String getISBN() {
+			return ISBN;
 		}
-		public void setIsbn(String isbn) {   ///SET
-			this.isbn = isbn;
+		public void setISBN(String ISBN) {   ///SET
+			this.ISBN = ISBN;
 		}
 		public int getNum_ejemplares() {
 			return num_ejemplares;
@@ -148,8 +213,8 @@ public class Libro {
 		public String toString() {
 			return "Libro [id_libro=" + id_libro + ", titulo=" + titulo + ", editorial=" + editorial + ", num_paginas="
 					+ num_paginas + ", edicion=" + edicion + ", idioma=" + idioma + ", fecha_publicacion="
-					+ fecha_publicacion + ", descripcion=" + descripcion + ", tipo_pasta=" + tipo_pasta + ", isbn="
-					+ isbn + ", num_ejemplares=" + num_ejemplares + ", portada=" + portada + ", presentacion="
+					+ fecha_publicacion + ", descripcion=" + descripcion + ", tipo_pasta=" + tipo_pasta + ", ISBN="
+					+ ISBN + ", num_ejemplares=" + num_ejemplares + ", portada=" + portada + ", presentacion="
 					+ presentacion + ", precio=" + precio + ", categoria=" + categoria + ", autor=" + autor + "]";
 		}
 		

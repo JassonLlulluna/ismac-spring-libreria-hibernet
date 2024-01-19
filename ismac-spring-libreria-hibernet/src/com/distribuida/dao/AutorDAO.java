@@ -11,5 +11,6 @@ public interface AutorDAO {
 	public  void add (Autor autor);
 	public  void up (Autor autor );	
 	public  void del (int id );
+	public List<Autor> findAll(String busqueda);
 
 }

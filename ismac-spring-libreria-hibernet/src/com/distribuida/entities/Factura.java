@@ -1,5 +1,7 @@
 package com.distribuida.entities;
 
+import java.util.Date;
+
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -27,23 +29,23 @@ public class Factura {
 		@Column(name="num_factura")
 		private String num_factura; 
 		@Column(name="fecha")
-		private int fecha;  
+		private Date fecha;  
 		@Column(name="total_neto")
-		private float total_neto; 
+		private double total_neto; 
 		@Column(name="iva")
-		private float iva; 
+		private double iva; 
 		@Column(name="total")
-		private float total;
+		private double total;
 		
+		
+		//ROOLBACK RECUPERAR CON REMOVE
+		//MAPEAR LIBRO, FACTURA_DETALLE CON FK
 		
 		//NO REMOVE, CONFLICTO CON FK
 		@ManyToOne(cascade= {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
-		@JoinColumn(name="cliente")
-		
-		
-		
-		//GENERAMOS CLIENTE
-		@Autowired
+		@JoinColumn(name="id_cliente")		
+		//GENERAMOS CLIENTE ***********
+//		@Autowired
 		private Cliente cliente;  //CLIENTE
 		
 
@@ -52,6 +54,21 @@ public class Factura {
 		public Factura() {}
 		
 		
+		//BORRAR EL SUPER
+		public Factura(int id_factura, String num_factura, Date fecha, double total_neto, double iva, double total,
+				Cliente cliente) {
+			
+			this.id_factura = id_factura;
+			this.num_factura = num_factura;
+			this.fecha = fecha;
+			this.total_neto = total_neto;
+			this.iva = iva;
+			this.total = total;
+			this.cliente = cliente;
+		}
+
+
+
 		//CONSTRUCTOR CON CLIENTE
 		public Factura(Cliente cliente) {
 			this.cliente=cliente;
@@ -79,28 +96,28 @@ public class Factura {
 		}
 
 
-		public int getFecha() {
+		public Date getFecha() {
 			return fecha;
 		}
-		public void setFecha(int fecha) {
+		public void setFecha(Date fecha) {
 			this.fecha = fecha;
 		}
-		public float getTotal_neto() {
+		public double getTotal_neto() {
 			return total_neto;
 		}
-		public void setTotal_neto(float total_neto) {
+		public void setTotal_neto(double total_neto) {
 			this.total_neto = total_neto;
 		}
-		public float getIva() {
+		public double getIva() {
 			return iva;
 		}
-		public void setIva(float iva) {
+		public void setIva(double iva) {
 			this.iva = iva;
 		}
-		public float getTotal() {
+		public double getTotal() {
 			return total;
 		}
-		public void setTotal(float total) {
+		public void setTotal(double total) {
 			this.total = total;
 		}
 

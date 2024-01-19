@@ -17,6 +17,7 @@ import com.distribuida.entities.Cliente;
 @Repository
 public class AutorDAOImpl implements AutorDAO {
 	
+	
 
 	@Autowired
 	private SessionFactory sessionFactory;
@@ -106,6 +107,27 @@ public class AutorDAOImpl implements AutorDAO {
 
 		query.setParameter("idAutor", id);
 			query.executeUpdate();		
+	}
+
+
+
+	@Override
+	public List<Autor> findAll(String busqueda) {
+		Session session=sessionFactory.getCurrentSession();
+		Query<Autor> query = session.createQuery("SELECT au from Autor au WHERE"
+				+"au.nombre LIKE : busqueda"
+				+"au.apellido LIKE : busqueda"
+				+"au.pais LIKE : busqueda"
+				+"au.direccion LIKE : busqueda"
+				+"au.telefono LIKE : busqueda"
+				+"au.correo LIKE : busqueda",Autor.class);
+		
+		query.setParameter("busqueda","%"+ busqueda+"%");
+		
+		return query.getResultList();
+				
+				
+
 	}
 	
 	
