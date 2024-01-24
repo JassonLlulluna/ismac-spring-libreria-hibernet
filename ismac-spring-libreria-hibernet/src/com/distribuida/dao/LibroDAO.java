@@ -16,6 +16,8 @@ public List<Libro> findAll();
 	public void up(Libro libro);
 	
 	public void del(int id);
+
+	public List<Libro> findAll(String busqueda);
 	
 
 }

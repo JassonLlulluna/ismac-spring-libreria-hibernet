@@ -1,10 +1,13 @@
 package com.distribuida.entities;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,12 +31,14 @@ public class DetalleFactura {
 	
 	
 	//FACTURA Y LIBRO
-	@Column(name="subtotal")
-	private Factura factura;  // FACTURA
-	@Autowired
-	private Libro libro;// LIBRO
+	@ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+	@JoinColumn(name = "id_factura")
+	private Factura factura;
+	@ManyToOne(cascade = {CascadeType.DETACH, CascadeType.MERGE, CascadeType.PERSIST, CascadeType.REFRESH})
+	@JoinColumn(name = "id_libro")
+	private Libro libro;
 	
-	
+
 	
 	public DetalleFactura(){
 		

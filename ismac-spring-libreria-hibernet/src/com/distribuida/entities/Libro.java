@@ -90,8 +90,7 @@ public class Libro {
 			this.portada = portada;
 			this.presentacion = presentacion;
 			this.precio = precio;
-			this.categoria = categoria;
-			this.autor = autor;
+			
 		}
 
 

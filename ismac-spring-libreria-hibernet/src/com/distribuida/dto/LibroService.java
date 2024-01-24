@@ -9,15 +9,25 @@ import com.distribuida.entities.Libro;
 
 public interface LibroService {
 	
-	public List<Libro> findAll();
-	public  Libro findOne(int id );
-	public  void add (int id_libro, String titulo, String editorial, int num_paginas, String edicion, String idioma,
-			Date fecha_publicacion, String descripcion, String tipo_pasta, String iSBN, int num_ejemplares,
-			String portada, String presentacion, float precio, int idAutor,  int idCategoria);
-	public  void up (int id_libro, String titulo, String editorial, int num_paginas, String edicion, String idioma,
-			Date fecha_publicacion, String descripcion, String tipo_pasta, String iSBN, int num_ejemplares,
-			String portada, String presentacion, float precio, int idAutor, int idCategoria);	
-	public  void del (int id );
+public List<Libro> findAll();
+	
+	public Libro findOne(int id);
+	
+//	public void add(int idLibro, String titulo, String editorial, int numPaginas, String edicion, String idioma,
+//			Date fechaPublicacion, String descripcion, String tipoPasta, String iSBN, int numEjemplares, String portada,
+//			String presentacion, double precio, Categoria categoria, Autor autor);
+	
+	public void up(int idLibro, String titulo, String editorial, int numPaginas, String edicion, String idioma,
+			Date fechaPublicacion, String descripcion, String tipoPasta, String iSBN, int numEjemplares, String portada,
+			String presentacion, float precio,int idAutor, int idCategoria);
+	
+	public void del(int id);
+	
+	
 	public List<Libro> findAll(String busqueda);
+	
+	public void add(int idLibro, String titulo, String editorial, int numPaginas, String edicion, String idioma,
+			Date fechaPublicacion, String descripcion, String tipoPasta, String iSBN, int numEjemplares, String portada,
+			String presentacion, float precio,int idAutor, int idCategoria);
 
 }

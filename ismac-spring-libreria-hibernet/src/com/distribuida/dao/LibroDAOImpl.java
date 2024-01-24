@@ -1,11 +1,14 @@
 package com.distribuida.dao;
 
+import java.util.Date;
 import java.util.List;
 
+import javax.persistence.Column;
 import javax.transaction.Transactional;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -61,6 +64,31 @@ public class LibroDAOImpl implements LibroDAO {
 		Session session = sessionFactory.getCurrentSession();
 		session.delete(findOne(id));
 		
+	}
+
+	@Override
+	public List<Libro> findAll(String busqueda) {
+		// TODO Auto-generated method stub
+		
+		 	Session session=sessionFactory.getCurrentSession();
+		Query<Libro> query = session.createQuery("SELECT lb from Libro lb WHERE"
+				+"lb.titulo LIKE : busqueda"
+				+"lb.editorial LIKE : busqueda"
+				+"lb.num_paginas LIKE : busqueda"
+				+"lb.idioma LIKE : busqueda"
+				+"lb.fecha_publicacion LIKE : busqueda"
+				+"lb.descripcion LIKE : busqueda"
+				+"lb.tipo_pasta LIKE : busqueda"
+				+"lb.ISBN LIKE : busqueda"
+				+"lb.num_ejemplares LIKE : busqueda"
+				+"lb.portada LIKE : busqueda"
+				+"lb.presentacion LIKE : busqueda"
+				+"lb.precio LIKE : busqueda",Libro.class);
+		
+		query.setParameter("busqueda","%"+ busqueda+"%");
+		
+		return query.getResultList();
+	
 	}
 
 }

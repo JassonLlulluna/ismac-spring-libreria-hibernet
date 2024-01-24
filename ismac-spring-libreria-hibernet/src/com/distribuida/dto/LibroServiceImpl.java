@@ -34,23 +34,21 @@ public class LibroServiceImpl implements LibroService {
 	}
 
 	@Override
-	public void add(int id_libro, String titulo, String editorial, int num_paginas, String edicion, String idioma,
-			Date fecha_publicacion, String descripcion, String tipo_pasta, String iSBN, int num_ejemplares,
-			String portada, String presentacion, float precio, int idAutor, int idCategoria) {
+	public void add(int idLibro, String titulo, String editorial, int numPaginas, String edicion, String idioma,
+			Date fechaPublicacion, String descripcion, String tipoPasta, String iSBN, int numEjemplares, String portada,
+			String presentacion, float precio,int idAutor, int idCategoria) {
 		// TODO Auto-generated method stub
-		
 		Autor autor = autorDAO.findOne(idAutor);
 		Categoria categoria = categoriaDAO.findOne(idCategoria);
 		
-		Libro libro = new Libro(id_libro, titulo, editorial, num_paginas, edicion, idioma,
-				fecha_publicacion, descripcion, tipo_pasta, iSBN, num_ejemplares, portada,
+		Libro libro = new Libro(idLibro, titulo, editorial, numPaginas, edicion, idioma,
+				fechaPublicacion, descripcion, tipoPasta, iSBN, numEjemplares, portada,
 				presentacion, precio);
 		
 		libro.setAutor(autor);
 		libro.setCategoria(categoria);
 		
 		libroDAO.add(libro);
-
 	}
 
 	@Override
@@ -75,13 +73,14 @@ public class LibroServiceImpl implements LibroService {
 	@Override
 	public void del(int id) {
 		// TODO Auto-generated method stub
+		libroDAO.del(id);
 
 	}
 
 	@Override
 	public List<Libro> findAll(String busqueda) {
 		// TODO Auto-generated method stub
-		return null;
+		return libroDAO.findAll();
 	}
 
 }
